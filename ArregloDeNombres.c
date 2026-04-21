@@ -15,6 +15,7 @@ positivo (mayor que cero) si <cadena1> es mayor que <cadena2> */
 #include <stdlib.h>
 
 void mostrarPersonas(char *V[], int x); // mando el vector, con cantidad de personas
+int buscarNombre(char *V[], char *pal, int TAM);
 
 int main(){
 
@@ -34,6 +35,19 @@ char buff[50];
 
 mostrarPersonas(V, TAM);
 
+// funcion buscar en Main
+
+    char pal[50];
+    printf("\nIngrese la palabra a buscar: ");
+    gets(pal);
+
+int buscar = buscarNombre(V, pal, TAM); // pide retornar -1 si no esta
+    if(buscar == -1){
+        printf("\n No se encontro la palabra buscada.");
+    }else{
+        printf("\n Lo encontrado: %s", V[buscar]);
+    }
+
 for(int i = 0; i<TAM; i++){
     free(V[i]);
 }
@@ -45,4 +59,13 @@ void mostrarPersonas(char *V[], int x){
     for(int i = 0; i < x; i++){
         printf("\n Nombre n%d: %s \n", i+1, V[i]);
     }
+}
+
+int buscarNombre(char *V[], char *pal, int TAM){
+    for(int i = 0; i < TAM; i++){
+    if(strstr(V[i], pal) != NULL){
+        return i;
+    }
+}
+return -1;
 }
