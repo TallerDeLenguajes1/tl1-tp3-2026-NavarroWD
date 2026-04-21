@@ -12,9 +12,37 @@ positivo (mayor que cero) si <cadena1> es mayor que <cadena2> */
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
+void mostrarPersonas(char *V[], int x); // mando el vector, con cantidad de personas
 
 int main(){
 
+int TAM = 5;
+char *V[TAM];
+char buff[50];
+
+    for(int i = 0 ; i < TAM; i++){
+    printf("\n Ingrese %d nombres de personas (n: %d): ",TAM, i+1);
+    gets(buff);
+
+    int tamCadena = strlen(buff);
+
+    V[i] = (char *)malloc(tamCadena*sizeof(char)+1);
+    strcpy(V[i], buff);
+    }
+
+mostrarPersonas(V, TAM);
+
+for(int i = 0; i<TAM; i++){
+    free(V[i]);
+}
+
 return 0;
+}
+
+void mostrarPersonas(char *V[], int x){
+    for(int i = 0; i < x; i++){
+        printf("\n Nombre n%d: %s \n", i+1, V[i]);
+    }
 }
